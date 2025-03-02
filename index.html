@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class OS 镜像下载</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0078D4',
+secondary: '#F0F0F0'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.glass-effect {
+background: rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+}
+.card-hover {
+transition: all 0.3s ease;
+}
+.card-hover:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+.notice-scroll {
+animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+0% { transform: translateX(100%); }
+100% { transform: translateX(-100%); }
+}
+.system-card {
+background: rgba(255, 255, 255, 0.9);
+border: 1px solid rgba(209, 213, 219, 0.3);
+transition: all 0.3s ease;
+}
+.system-card:hover {
+background: rgba(255, 255, 255, 0.95);
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+.download-btn {
+transition: all 0.2s ease;
+}
+.download-btn:hover {
+transform: scale(1.05);
+}
+.download-btn:active {
+transform: scale(0.95);
+}
+</style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+<nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center">
+<span class="text-2xl font-['Pacifico'] text-primary">CO</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full hover:bg-gray-100 transition-colors" title="切换主题">
+<i class="ri-sun-line text-gray-600"></i>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-4">
+<div class="max-w-7xl mx-auto">
+<div class="mb-8 glass-effect rounded-lg p-4 overflow-hidden relative">
+<div class="flex items-center space-x-2">
+<i class="ri-notification-3-line text-primary"></i>
+<div class="notice-scroll whitespace-nowrap">
+Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护：大战世新与貂蝉 加入我们QQ群给我们宝贵建议：1036796244
+</div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-windows-line text-4xl text-primary"></i>
+<div class="ml-4">
+<h3 class="text-xl font-semibold">Windows 10 版本</h3>
+<p class="text-gray-500">版本号：1.0.0</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-gray-600">适用于 Windows 10 系统的 Class OS 定制版本，优化系统性能，提供流畅体验，内置许多教学软件，更好的服务学生及教师。</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500">更新日期：2025-03-01</span>
+<button class="download-btn bg-primary text-white px-6 py-2 rounded-button hover:bg-blue-600 transition-colors">
+下载
+</button>
+</div>
+</div>
+</div>
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-windows-line text-4xl text-primary"></i>
+<div class="ml-4">
+<h3 class="text-xl font-semibold">Windows 7 版本</h3>
+<p class="text-gray-500">版本号：1.0.0</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-gray-600">专为 Windows 7 系统打造的 Class OS 版本，保持经典界面的同时提升系统性能。</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500">更新日期：2025-03-02</span>
+<button class="download-btn bg-primary text-white px-6 py-2 rounded-button hover:bg-blue-600 transition-colors">
+下载
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 glass-effect rounded-lg p-6">
+<h2 class="text-xl font-semibold mb-4">系统要求</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<h3 class="font-medium mb-2">Windows 10 版本</h3>
+<ul class="space-y-2 text-gray-600">
+<li>• 处理器：2.0 GHz 双核处理器</li>
+<li>• 内存：4 GB RAM</li>
+<li>• 存储空间：20 GB 可用空间</li>
+<li>• 显卡：是个卡就能用</li>
+</ul>
+</div>
+<div>
+<h3 class="font-medium mb-2">Windows 7 版本</h3>
+<ul class="space-y-2 text-gray-600">
+<li>• 处理器：1.6 GHz 处理器</li>
+<li>• 内存：2 GB RAM</li>
+<li>• 存储空间：16 GB 可用空间</li>
+<li>• 显卡：是个卡就能用</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<h2 class="text-xl font-semibold mb-6">系统界面预览</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="system-card rounded-lg overflow-hidden">
+<img src="images/win10-preview.jpg"
+class="w-full h-64 object-cover" alt="Windows 10 界面预览">
+<div class="p-4">
+<h3 class="font-medium mb-2">Windows 10 界面</h3>
+<p class="text-gray-600">优化后的win10，保持传统布局的同时优化性能以便适应教学</p>
+</div>
+</div>
+<div class="system-card rounded-lg overflow-hidden">
+<img src="images/win7-preview.jpg"
+class="w-full h-64 object-cover" alt="Windows 7 界面预览">
+<div class="p-4">
+<h3 class="font-medium mb-2">Windows 7 界面</h3>
+<p class="text-gray-600">经典的win7，保持传统布局的同时优化性能以便适应教学</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<h2 class="text-3xl font-bold mb-8">往下看，精彩继续。</h2>
+<div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-notification-4-line text-4xl text-primary"></i>
+<h3 class="text-xl font-semibold ml-4">增强了windows的性能</h3>
+</div>
+<p class="text-gray-600">ClassOS 提供了强大的课表软件，能够在上下课等时间点推出提醒；此外，插件也可调用通知接口，使其更加实用。。</p>
+</div>
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-settings-3-line text-4xl text-primary"></i>
+<h3 class="text-xl font-semibold ml-4">高度的自定义设置</h3>
+</div>
+<p class="text-gray-600">ClassOS 致力于提供高度的自定义选项，使每位电教能构建出独一无二的桌面课表。</p>
+</div>
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-window-line text-4xl text-primary"></i>
+<h3 class="text-xl font-semibold ml-4">课件软件</h3>
+</div>
+<p class="text-gray-600">ClassOS 中内置了WPS和OFFICE等办公软件，重装完无缝上课。</p>
+</div>
+<div class="system-card rounded-lg p-6">
+<div class="flex items-center mb-4">
+<i class="ri-paint-brush-line text-4xl text-primary"></i>
+<h3 class="text-xl font-semibold ml-4">实用工具</h3>
+</div>
+<p class="text-gray-600">ClassOS 内置了potplayer和banzip以及idm等实用软件。</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="mt-16 text-center">
+<h2 class="text-3xl font-bold mb-8">更多特性等你自行体验</h2>
+<div class="flex justify-center gap-4 flex-wrap">
+<a href="#" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-blue-600 transition-colors flex items-center">
+<i class="ri-download-line mr-2"></i>
+下载 ClassOS
+</a>
+<a href="#" class="bg-gray-700 text-white px-6 py-2 rounded-button hover:bg-gray-800 transition-colors flex items-center">
+<i class="ri-github-line mr-2"></i>
+在 GitHub 了解更多（没做）
+</a>
+<a href="#" id="join-community" class="bg-violet-600 text-white px-6 py-2 rounded-button hover:bg-violet-700 transition-colors flex items-center">
+<i class="ri-discuss-line mr-2"></i>
+加入社区
+</a>
+<a href="https://rcn1rz82fmxb.feishu.cn/docx/I4hrdo5ctoYlqRxwEBdcn1I5n44?from=from_copylink" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 text-white px-6 py-2 rounded-button hover:bg-emerald-700 transition-colors flex items-center">
+<i class="ri-book-2-line mr-2"></i>
+使用文档
+</a>
+</div>
+<div class="mt-12 max-w-4xl mx-auto">
+<p class="mt-4 text-sm text-gray-500">截图用户为：Evan</p>
+</div>
+</div>
+<footer class="glass-effect mt-16 py-6">
+<div class="max-w-7xl mx-auto px-4 text-center text-gray-600">
+<p>© 2025 Class OS. 你们知道吗？什么不会吧？真的吗？Class OS是Evan开发的</p>
+</div>
+</footer>
+<script>
+document.querySelectorAll('.download-btn').forEach(btn => {
+btn.addEventListener('click', function() {
+const version = this.closest('.system-card').querySelector('h3').textContent;
+
+// 检查是否是Windows 10版本
+if (version.includes('Windows 10')) {
+  // 创建确认对话框
+  const dialog = document.createElement('div');
+  dialog.className = 'fixed inset-0 flex items-center justify-center z-50';
+  dialog.innerHTML = `
+  <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+  <div class="glass-effect rounded-lg p-6 max-w-md w-full mx-4 relative z-10">
+    <h3 class="text-xl font-semibold mb-4">下载确认</h3>
+    <p class="text-gray-600 mb-6">您确定要下载 ${version} 吗？</p>
+    <p class="text-gray-600 mb-6">提取码：<span class="font-bold">YmiJ</span></p>
+    <div class="flex justify-end space-x-4">
+      <button class="px-4 py-2 rounded-button border border-gray-300 hover:bg-gray-100 transition-colors">取消</button>
+      <button class="px-4 py-2 rounded-button bg-primary text-white hover:bg-blue-600 transition-colors">确认下载</button>
+    </div>
+  </div>
+  `;
+  document.body.appendChild(dialog);
+  
+  dialog.querySelector('.bg-black').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:first-of-type').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:last-of-type').addEventListener('click', () => {
+    dialog.remove();
+    // 跳转到夸克网盘链接
+    window.open('https://pan.quark.cn/s/36a72b387fa2', '_blank');
+    
+    // 显示下载通知
+    const notification = document.createElement('div');
+    notification.className = 'fixed bottom-4 right-4 glass-effect rounded-lg p-4 text-green-600 z-50';
+    notification.innerHTML = '正在跳转到下载页面，提取码：<span class="font-bold">YmiJ</span>';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 5000);
+  });
+} else if (version.includes('Windows 7')) {
+  // Windows 7版本的处理逻辑
+  const dialog = document.createElement('div');
+  dialog.className = 'fixed inset-0 flex items-center justify-center z-50';
+  dialog.innerHTML = `
+  <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+  <div class="glass-effect rounded-lg p-6 max-w-md w-full mx-4 relative z-10">
+    <h3 class="text-xl font-semibold mb-4">下载确认</h3>
+    <p class="text-gray-600 mb-6">您确定要下载 ${version} 吗？</p>
+    <p class="text-gray-600 mb-6">提取码：<span class="font-bold">XuVP</span></p>
+    <div class="flex justify-end space-x-4">
+      <button class="px-4 py-2 rounded-button border border-gray-300 hover:bg-gray-100 transition-colors">取消</button>
+      <button class="px-4 py-2 rounded-button bg-primary text-white hover:bg-blue-600 transition-colors">确认下载</button>
+    </div>
+  </div>
+  `;
+  document.body.appendChild(dialog);
+  
+  dialog.querySelector('.bg-black').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:first-of-type').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:last-of-type').addEventListener('click', () => {
+    dialog.remove();
+    // 跳转到夸克网盘链接
+    window.open('https://pan.quark.cn/s/2aed52872303', '_blank');
+    
+    // 显示下载通知
+    const notification = document.createElement('div');
+    notification.className = 'fixed bottom-4 right-4 glass-effect rounded-lg p-4 text-green-600 z-50';
+    notification.innerHTML = '正在跳转到下载页面，提取码：<span class="font-bold">XuVP</span>';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 5000);
+  });
+} else {
+  // 其他版本的处理逻辑
+  const dialog = document.createElement('div');
+  dialog.className = 'fixed inset-0 flex items-center justify-center z-50';
+  dialog.innerHTML = `
+  <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+  <div class="glass-effect rounded-lg p-6 max-w-md w-full mx-4 relative z-10">
+    <h3 class="text-xl font-semibold mb-4">下载确认</h3>
+    <p class="text-gray-600 mb-6">您确定要下载 ${version} 吗？</p>
+    <div class="flex justify-end space-x-4">
+      <button class="px-4 py-2 rounded-button border border-gray-300 hover:bg-gray-100 transition-colors">取消</button>
+      <button class="px-4 py-2 rounded-button bg-primary text-white hover:bg-blue-600 transition-colors">确认下载</button>
+    </div>
+  </div>
+  `;
+  document.body.appendChild(dialog);
+  dialog.querySelector('.bg-black').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:first-of-type').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button:last-of-type').addEventListener('click', () => {
+    dialog.remove();
+    const notification = document.createElement('div');
+    notification.className = 'fixed bottom-4 right-4 glass-effect rounded-lg p-4 text-green-600 z-50';
+    notification.innerHTML = '已跳转至夸克网盘，以后会更新下载方式';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+  });
+}
+});
+});
+// 加入社区按钮点击事件
+document.getElementById('join-community').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  // 创建模态框
+  const dialog = document.createElement('div');
+  dialog.className = 'fixed inset-0 flex items-center justify-center z-50';
+  dialog.innerHTML = `
+  <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+  <div class="glass-effect rounded-lg p-6 max-w-md w-full mx-4 relative z-10">
+    <h3 class="text-xl font-semibold mb-4">加入 ClassOS 社区</h3>
+    <div class="text-center mb-4">
+      <img src="images/0f2415809be8753e652a1d41172d6d8f.jpg" alt="QQ群二维码" class="mx-auto max-w-full h-auto rounded-lg">
+      <p class="mt-4 text-gray-600">扫一扫二维码，加入群聊</p>
+      <p class="text-gray-600 font-bold">群号：1036796244</p>
+    </div>
+    <div class="flex justify-end">
+      <button class="px-4 py-2 rounded-button bg-primary text-white hover:bg-blue-600 transition-colors">关闭</button>
+    </div>
+  </div>
+  `;
+  
+  document.body.appendChild(dialog);
+  
+  // 点击背景或关闭按钮关闭模态框
+  dialog.querySelector('.bg-black').addEventListener('click', () => dialog.remove());
+  dialog.querySelector('button').addEventListener('click', () => dialog.remove());
+});
+
+const themeToggle = document.querySelector('.ri-sun-line');
+let isDark = false;
+themeToggle.addEventListener('click', () => {
+isDark = !isDark;
+themeToggle.className = isDark ? 'ri-moon-line text-gray-600' : 'ri-sun-line text-gray-600';
+document.body.className = isDark ? 'min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white' : 'min-h-screen bg-gradient-to-br from-blue-50 to-white';
+});
+</script>
+</body>
+</html>
