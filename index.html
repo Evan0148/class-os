@@ -47,17 +47,25 @@ transition: all 0.3s ease;
 transform: translateY(-4px);
 box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
+.notice-scroll-container {
+position: relative;
+overflow: hidden;
+width: calc(100% - 3rem); /* Adjust width to account for icon */
+}
 .notice-scroll {
+display: inline-block;
+white-space: nowrap;
 animation: scroll 20s linear infinite;
 }
 @keyframes scroll {
 0% { transform: translateX(100%); }
-100% { transform: translateX(-100%); }
+100% { transform: translateX(calc(-100% + 3rem)); } /* Adjust translation to stop before the icon */
 }
 .system-card {
 background: rgba(255, 255, 255, 0.9);
 border: 1px solid rgba(209, 213, 219, 0.3);
 transition: all 0.3s ease;
+max-width: 100%; /* Ensure the card width is responsive */
 }
 .system-card:hover {
 background: rgba(255, 255, 255, 0.95);
@@ -72,6 +80,97 @@ transform: scale(1.05);
 }
 .download-btn:active {
 transform: scale(0.95);
+}
+
+/* Dark mode styles */
+body.dark-mode .glass-effect,
+body.dark-mode .system-card {
+background-color: #1a1a1a;
+color: white;
+border-color: #444;
+}
+body.dark-mode .card-hover:hover {
+box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+}
+body.dark-mode .notice-scroll {
+color: white;
+}
+body.dark-mode footer {
+background-color: #1a1a1a;
+color: white;
+}
+body.dark-mode .download-btn {
+background-color: #0078D4;
+color: white;
+}
+body.dark-mode .download-btn:hover {
+background-color: #005bb5;
+}
+body.dark-mode .rounded-button.border-gray-300 {
+border-color: #444;
+}
+body.dark-mode .text-gray-500,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-900 {
+color: white;
+}
+body.dark-mode .text-primary {
+color: #0078D4;
+}
+body.dark-mode .bg-primary {
+background-color: #0078D4;
+}
+body.dark-mode .hover\:bg-blue-600:hover {
+background-color: #005bb5;
+}
+body.dark-mode .hover\:bg-violet-700:hover {
+background-color: #6b21a8;
+}
+body.dark-mode .hover\:bg-emerald-700:hover {
+background-color: #047857;
+}
+
+/* Image zoom effect */
+.image-zoom-container {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+overflow: hidden;
+height: 16rem; /* Set a fixed height for the container */
+}
+.image-zoom-container img {
+max-width: 100%;
+max-height: 100%;
+transition: transform 0.3s ease;
+object-fit: cover; /* Ensure the image covers the container */
+}
+.image-zoom-container:hover img {
+transform: scale(1.2);
+}
+.zoom-overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.8);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+visibility: hidden;
+opacity: 0;
+transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+.zoom-overlay.visible {
+visibility: visible;
+opacity: 1;
+}
+.zoom-overlay img {
+max-width: 90%;
+max-height: 90%;
 }
 </style>
 </head>
@@ -95,8 +194,10 @@ transform: scale(0.95);
 <div class="mb-8 glass-effect rounded-lg p-4 overflow-hidden relative">
 <div class="flex items-center space-x-2">
 <i class="ri-notification-3-line text-primary"></i>
+<div class="notice-scroll-container">
 <div class="notice-scroll whitespace-nowrap">
-Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护：大战世新与貂蝉 加入我们QQ群给我们宝贵建议：1036796244
+Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护：大战世新与貂蝉 加入我们QQ群支持我们qwq：1036796244
+</div>
 </div>
 </div>
 </div>
@@ -106,7 +207,7 @@ Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护
 <i class="ri-windows-line text-4xl text-primary"></i>
 <div class="ml-4">
 <h3 class="text-xl font-semibold">Windows 10 版本</h3>
-<p class="text-gray-500">版本号：1.0.0</p>
+<p class="text-gray-500">版本号：10.2004</p>
 </div>
 </div>
 <div class="space-y-4">
@@ -124,7 +225,7 @@ Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护
 <i class="ri-windows-line text-4xl text-primary"></i>
 <div class="ml-4">
 <h3 class="text-xl font-semibold">Windows 7 版本</h3>
-<p class="text-gray-500">版本号：1.0.0</p>
+<p class="text-gray-500">版本号：7.SP1</p>
 </div>
 </div>
 <div class="space-y-4">
@@ -144,19 +245,19 @@ Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护
 <div>
 <h3 class="font-medium mb-2">Windows 10 版本</h3>
 <ul class="space-y-2 text-gray-600">
-<li>• 处理器：2.0 GHz 双核处理器</li>
-<li>• 内存：4 GB RAM</li>
-<li>• 存储空间：20 GB 可用空间</li>
-<li>• 显卡：是个卡就能用</li>
+<li>• 处理器：1 千兆赫 (GHz) 或更快的处理器或者 SoC</li>
+<li>• 运行内存[RAM]：2 GB</li>
+<li>• 存储空间：200GB[C盘推荐容量]</li>
+<li>• 图形卡：DirectX 9 或更高版本（含 WDDM 1.0 驱动程序）</li>
 </ul>
 </div>
 <div>
 <h3 class="font-medium mb-2">Windows 7 版本</h3>
 <ul class="space-y-2 text-gray-600">
-<li>• 处理器：1.6 GHz 处理器</li>
-<li>• 内存：2 GB RAM</li>
-<li>• 存储空间：16 GB 可用空间</li>
-<li>• 显卡：是个卡就能用</li>
+<li>• 处理器：1 千兆赫 (GHz) 或更快的处理器或者 SoC</li>
+<li>• 运行内存[RAM]：2 GB</li>
+<li>• 存储空间：200GB[C盘推荐容量]</li>
+<li>• 图形卡：DirectX 9 或更高版本（含 WDDM 1.0 驱动程序）</li>
 </ul>
 </div>
 </div>
@@ -165,19 +266,24 @@ Class OS 已发布，如有BUG轻点喷。系统开发：Evan 网站开发维护
 <h2 class="text-xl font-semibold mb-6">系统界面预览</h2>
 <div class="grid md:grid-cols-2 gap-8">
 <div class="system-card rounded-lg overflow-hidden">
+<div class="image-zoom-container">
 <img src="images/win10-preview.jpg"
-class="w-full h-64 object-cover" alt="Windows 10 界面预览">
+alt="Windows 10 界面预览" onclick="openZoom(this)">
+</div>
 <div class="p-4">
 <h3 class="font-medium mb-2">Windows 10 界面</h3>
 <p class="text-gray-600">优化后的win10，保持传统布局的同时优化性能以便适应教学</p>
 </div>
 </div>
 <div class="system-card rounded-lg overflow-hidden">
+<div class="image-zoom-container">
 <img src="images/win7-preview.jpg"
-class="w-full h-64 object-cover" alt="Windows 7 界面预览">
+alt="Windows 7 界面预览" onclick="openZoom(this)">
+</div>
 <div class="p-4">
 <h3 class="font-medium mb-2">Windows 7 界面</h3>
 <p class="text-gray-600">经典的win7，保持传统布局的同时优化性能以便适应教学</p>
+</div>
 </div>
 </div>
 </div>
@@ -190,43 +296,38 @@ class="w-full h-64 object-cover" alt="Windows 7 界面预览">
 <i class="ri-notification-4-line text-4xl text-primary"></i>
 <h3 class="text-xl font-semibold ml-4">增强了windows的性能</h3>
 </div>
-<p class="text-gray-600">ClassOS 提供了强大的课表软件，能够在上下课等时间点推出提醒；此外，插件也可调用通知接口，使其更加实用。。</p>
+<p class="text-gray-600">ClassOS 对性能设置方面高度重视，确保低配置电脑也能流畅使用课件功能[不同系列针对的配置不同]。</p>
 </div>
 <div class="system-card rounded-lg p-6">
 <div class="flex items-center mb-4">
 <i class="ri-settings-3-line text-4xl text-primary"></i>
 <h3 class="text-xl font-semibold ml-4">高度的自定义设置</h3>
 </div>
-<p class="text-gray-600">ClassOS 致力于提供高度的自定义选项，使每位电教能构建出独一无二的桌面课表。</p>
+<p class="text-gray-600">ClassOS 致力于提供高度的自定义选项，使每位电教能在安装镜像后再对系统进行一些定制。</p>
 </div>
 <div class="system-card rounded-lg p-6">
 <div class="flex items-center mb-4">
 <i class="ri-window-line text-4xl text-primary"></i>
-<h3 class="text-xl font-semibold ml-4">课件软件</h3>
+<h3 class="text-xl font-semibold ml-4">课件与软件</h3>
 </div>
-<p class="text-gray-600">ClassOS 中内置了WPS和OFFICE等办公软件，重装完无缝上课。</p>
+<p class="text-gray-600">ClassOS 中内置了WPS或Microsoft Office365等办公软件，重装完即可无缝上课。</p>
 </div>
 <div class="system-card rounded-lg p-6">
 <div class="flex items-center mb-4">
 <i class="ri-paint-brush-line text-4xl text-primary"></i>
 <h3 class="text-xl font-semibold ml-4">实用工具</h3>
 </div>
-<p class="text-gray-600">ClassOS 内置了potplayer和banzip以及idm等实用软件。</p>
+<p class="text-gray-600">ClassOS 内置了Potplayer和Bandizip以及IDM等实用软件。</p>
 </div>
 </div>
 </div>
 </div>
-</main>
 <div class="mt-16 text-center">
 <h2 class="text-3xl font-bold mb-8">更多特性等你自行体验</h2>
 <div class="flex justify-center gap-4 flex-wrap">
 <a href="#" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-blue-600 transition-colors flex items-center">
 <i class="ri-download-line mr-2"></i>
 下载 ClassOS
-</a>
-<a href="#" class="bg-gray-700 text-white px-6 py-2 rounded-button hover:bg-gray-800 transition-colors flex items-center">
-<i class="ri-github-line mr-2"></i>
-在 GitHub 了解更多（没做）
 </a>
 <a href="#" id="join-community" class="bg-violet-600 text-white px-6 py-2 rounded-button hover:bg-violet-700 transition-colors flex items-center">
 <i class="ri-discuss-line mr-2"></i>
@@ -236,6 +337,10 @@ class="w-full h-64 object-cover" alt="Windows 7 界面预览">
 <i class="ri-book-2-line mr-2"></i>
 使用文档
 </a>
+<!-- 新添加的彩蛋按钮 -->
+<button id="eggButton" class="shaky-button download-btn bg-primary text-white px-6 py-2 rounded-button hover:bg-blue-600 transition-colors flex items-center">
+我是彩蛋！
+</button>
 </div>
 <div class="mt-12 max-w-4xl mx-auto">
 <p class="mt-4 text-sm text-gray-500">截图用户为：Evan</p>
@@ -243,9 +348,12 @@ class="w-full h-64 object-cover" alt="Windows 7 界面预览">
 </div>
 <footer class="glass-effect mt-16 py-6">
 <div class="max-w-7xl mx-auto px-4 text-center text-gray-600">
-<p>© 2025 Class OS. 你们知道吗？什么不会吧？真的吗？Class OS是Evan开发的</p>
+<p>© 2025 Class OS. 你们知道吗？什么不会吧？真的吗？Class OS是Evan开发的✪ ω ✪</p>
 </div>
 </footer>
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()">
+<img src="" alt="Enlarged Image" id="enlargedImage">
+</div>
 <script>
 document.querySelectorAll('.download-btn').forEach(btn => {
 btn.addEventListener('click', function() {
@@ -379,8 +487,43 @@ let isDark = false;
 themeToggle.addEventListener('click', () => {
 isDark = !isDark;
 themeToggle.className = isDark ? 'ri-moon-line text-gray-600' : 'ri-sun-line text-gray-600';
-document.body.className = isDark ? 'min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white' : 'min-h-screen bg-gradient-to-br from-blue-50 to-white';
+document.body.className = isDark ? 'dark-mode min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white' : 'min-h-screen bg-gradient-to-br from-blue-50 to-white';
 });
+
+// 彩蛋按钮点击事件
+const button = document.getElementById('eggButton');
+let clickCount = 0;
+
+button.addEventListener('click', () => {
+    clickCount++;
+    button.classList.add('shake');
+
+    // Remove the shake class after the animation ends
+    setTimeout(() => {
+        button.classList.remove('shake');
+    }, 500);
+
+    if (clickCount === 6) {
+        window.open('https://www.bilibili.com/video/BV1uT4y1P7CX/?spm_id_from=333.337.search-card.all.click&vd_source=59f23ec6215653c4a04f2af08967f87c', '_blank'); // Replace with your desired URL
+        clickCount = 0; // Reset click count after jump
+    }
+});
+
+// Image zoom functions
+function openZoom(img) {
+    const enlargedImage = document.getElementById('enlargedImage');
+    enlargedImage.src = img.src;
+    const overlay = document.getElementById('zoomOverlay');
+    overlay.classList.add('visible');
+}
+
+function closeZoom() {
+    const overlay = document.getElementById('zoomOverlay');
+    overlay.classList.remove('visible');
+}
 </script>
 </body>
 </html>
+
+
+
